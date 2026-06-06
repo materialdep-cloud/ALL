@@ -120,13 +120,13 @@
                 <!-- 背景小草地與雲朵裝飾 -->
                 <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#22c55e_20%,transparent_20%)] bg-[size:16px_16px]"></div>
                 
-                <!-- 農場裝飾看板排版 -->
-                <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+                <!-- 農場裝飾看板排版：使用 flex-wrap 搭配 justify-center 確保在窄畫面下可以優雅換行而不壓扁 -->
+                <div class="flex flex-wrap items-center justify-center xl:justify-between gap-6 relative z-10 w-full">
                     
-                    <!-- 左側農民貼紙組 (全手繪 SVG 貼紙) -->
-                    <div class="flex items-center gap-3">
+                    <!-- 左側農民貼紙組 (全手繪 SVG 貼紙) - 加上 shrink-0 防止被擠壓 -->
+                    <div class="flex items-center gap-3 shrink-0 justify-center">
                         <!-- 1. 可愛小農夫 -->
-                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 0s;">
+                        <div class="sticker-deco shrink-0 bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 0s;">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
                                 <path d="M15 52 Q50 32 85 52 Z" fill="#fcd34d" stroke="#15803d" stroke-width="5" stroke-linejoin="round"/>
                                 <path d="M35 45 C35 25, 65 25, 65 45" fill="#f59e0b" stroke="#15803d" stroke-width="5"/>
@@ -140,7 +140,7 @@
                             </svg>
                         </div>
                         <!-- 2. 可愛北鼻 -->
-                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-14 h-14 flex items-center justify-center" style="animation-delay: 0.3s;">
+                        <div class="sticker-deco shrink-0 bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-14 h-14 flex items-center justify-center" style="animation-delay: 0.3s;">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
                                 <circle cx="50" cy="52" r="24" fill="#ffedd5" stroke="#15803d" stroke-width="5"/>
                                 <path d="M50 28 Q56 16 48 13" fill="none" stroke="#15803d" stroke-width="5" stroke-linecap="round"/>
@@ -152,7 +152,7 @@
                             </svg>
                         </div>
                         <!-- 3. 可愛乳牛 -->
-                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 0.6s;">
+                        <div class="sticker-deco shrink-0 bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 0.6s;">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
                                 <ellipse cx="22" cy="40" rx="10" ry="6" transform="rotate(-30 22 40)" fill="#ffffff" stroke="#15803d" stroke-width="4"/>
                                 <ellipse cx="78" cy="40" rx="10" ry="6" transform="rotate(30 78 40)" fill="#ffffff" stroke="#15803d" stroke-width="4"/>
@@ -169,20 +169,53 @@
                         </div>
                     </div>
 
-                    <!-- 中間大招牌 -->
-                    <div class="bg-white/90 border-4 border-[#22c55e] px-10 py-3 rounded-2xl shadow-lg transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                        <h1 class="text-4xl md:text-5xl font-black text-[#15803d] tracking-wider uppercase">
-                            greenliving
-                        </h1>
-                        <h2 class="text-2xl md:text-3xl font-black text-[#16a34a] mt-1 tracking-widest">
-                            綠園生活
-                        </h2>
+                    <!-- 中間大招牌 (已擺正 rotate-0，並在兩旁加入超可愛 SVG 抬頭太陽花貼紙) -->
+                    <div class="bg-white/95 border-4 border-[#22c55e] px-6 md:px-8 py-3 rounded-2xl shadow-lg flex items-center justify-center gap-2 transition-transform duration-300 shrink-0 max-w-full">
+                        <!-- 左側抬頭小花 -->
+                        <svg viewBox="0 0 100 100" class="w-8 h-8 md:w-10 md:h-10 animate-bounce shrink-0">
+                            <circle cx="50" cy="24" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="50" cy="76" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="24" cy="50" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="76" cy="50" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="32" cy="32" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="68" cy="68" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="32" cy="68" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="68" cy="32" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="50" cy="50" r="16" fill="#ffd946" stroke="#15803d" stroke-width="4.5"/>
+                        </svg>
+
+                        <div class="text-center">
+                            <h1 class="text-2xl md:text-3xl lg:text-4xl font-black text-[#15803d] tracking-wider uppercase flex items-center justify-center gap-1">
+                                greenliving
+                                <!-- Q版小葉子嫩芽 -->
+                                <svg viewBox="0 0 100 100" class="w-5 h-5 inline-block shrink-0">
+                                    <path d="M10 80 Q40 50 80 40 Q50 70 10 80" fill="#22c55e" stroke="#15803d" stroke-width="5"/>
+                                    <path d="M30 65 Q60 30 90 10 Q70 40 30 65" fill="#4ade80" stroke="#15803d" stroke-width="5"/>
+                                </svg>
+                            </h1>
+                            <h2 class="text-xl md:text-2xl lg:text-3xl font-black text-[#16a34a] mt-0.5 tracking-widest">
+                                綠園生活
+                            </h2>
+                        </div>
+
+                        <!-- 右側抬頭小花 -->
+                        <svg viewBox="0 0 100 100" class="w-8 h-8 md:w-10 md:h-10 animate-bounce shrink-0" style="animation-delay: 0.2s;">
+                            <circle cx="50" cy="24" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="50" cy="76" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="24" cy="50" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="76" cy="50" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="32" cy="32" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="68" cy="68" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="32" cy="68" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="68" cy="32" r="13" fill="#ffa6a6" stroke="#15803d" stroke-width="4"/>
+                            <circle cx="50" cy="50" r="16" fill="#ffd946" stroke="#15803d" stroke-width="4.5"/>
+                        </svg>
                     </div>
 
-                    <!-- 右側作物與拖拉機貼紙組 (全手繪 SVG 貼紙) -->
-                    <div class="flex items-center gap-3">
+                    <!-- 右側作物與拖拉機貼紙組 (全手繪 SVG 貼紙) - 加上 shrink-0 防止被擠壓 -->
+                    <div class="flex items-center gap-3 shrink-0 justify-center">
                         <!-- 4. Q版大生菜 -->
-                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 0.9s;">
+                        <div class="sticker-deco shrink-0 bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 0.9s;">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
                                 <path d="M25 45 C15 30, 40 20, 50 35 C60 20, 85 30, 75 45 Z" fill="#a7f3d0" stroke="#15803d" stroke-width="4" stroke-linejoin="round"/>
                                 <path d="M28 45 C20 65, 80 65, 72 45 C75 35, 25 35, 28 45 Z" fill="#4ade80" stroke="#15803d" stroke-width="5" stroke-linejoin="round"/>
@@ -196,26 +229,46 @@
                                 <circle cx="64" cy="51" r="3" fill="#f87171" opacity="0.7"/>
                             </svg>
                         </div>
-                        <!-- 5. Q版綿羊 -->
-                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-14 h-14 flex items-center justify-center" style="animation-delay: 1.2s;">
+                        <!-- 5. Q版綿羊 (恢復最漂亮的高清 overlapping 羊毛圓形結構) -->
+                        <div class="sticker-deco shrink-0 bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 1.2s;">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
-                                <circle cx="35" cy="40" r="12" fill="#e5e7eb"/>
-                                <circle cx="65" cy="40" r="12" fill="#e5e7eb"/>
-                                <circle cx="50" cy="28" r="14" fill="#e5e7eb"/>
-                                <circle cx="50" cy="65" r="12" fill="#e5e7eb"/>
-                                <rect x="34" y="38" width="32" height="26" rx="12" fill="#ffedd5" stroke="#15803d" stroke-width="5"/>
-                                <path d="M26 44 C18 44, 20 56, 32 50 Z" fill="#fecdd3" stroke="#15803d" stroke-width="3.5"/>
-                                <path d="M74 44 C82 44, 80 56, 68 50 Z" fill="#fecdd3" stroke="#15803d" stroke-width="3.5"/>
-                                <ellipse cx="50" cy="34" rx="12" ry="7" fill="#ffffff" stroke="#15803d" stroke-width="3.5"/>
-                                <circle cx="43" cy="46" r="3" fill="#15803d"/>
-                                <circle cx="57" cy="46" r="3" fill="#15803d"/>
-                                <path d="M48 52 Q50 54 52 52" fill="none" stroke="#15803d" stroke-width="3" stroke-linecap="round"/>
-                                <circle cx="37" cy="49" r="3" fill="#f87171" opacity="0.7"/>
-                                <circle cx="63" cy="49" r="3" fill="#f87171" opacity="0.7"/>
+                                <!-- 毛茸茸蓬鬆白毛底層 -->
+                                <circle cx="50" cy="50" r="32" fill="#ffffff" stroke="#15803d" stroke-width="5"/>
+                                <circle cx="30" cy="40" r="14" fill="#ffffff" stroke="#15803d" stroke-width="5"/>
+                                <circle cx="70" cy="40" r="14" fill="#ffffff" stroke="#15803d" stroke-width="5"/>
+                                <circle cx="30" cy="60" r="14" fill="#ffffff" stroke="#15803d" stroke-width="5"/>
+                                <circle cx="70" cy="60" r="14" fill="#ffffff" stroke="#15803d" stroke-width="5"/>
+                                <circle cx="50" cy="28" r="16" fill="#ffffff" stroke="#15803d" stroke-width="5"/>
+                                <circle cx="50" cy="72" r="16" fill="#ffffff" stroke="#15803d" stroke-width="5"/>
+                                <!-- 內圈覆蓋 -->
+                                <circle cx="50" cy="50" r="30" fill="#ffffff"/>
+                                <circle cx="30" cy="40" r="12" fill="#ffffff"/>
+                                <circle cx="70" cy="40" r="12" fill="#ffffff"/>
+                                <circle cx="30" cy="60" r="12" fill="#ffffff"/>
+                                <circle cx="70" cy="60" r="12" fill="#ffffff"/>
+                                <circle cx="50" cy="28" r="14" fill="#ffffff"/>
+                                <circle cx="50" cy="72" r="14" fill="#ffffff"/>
+                                <!-- 羊臉 -->
+                                <rect x="34" y="38" width="32" height="26" rx="10" fill="#ffedd5" stroke="#15803d" stroke-width="4.5"/>
+                                <!-- 粉紅耳朵 -->
+                                <ellipse cx="25" cy="45" rx="8" ry="5" transform="rotate(-30 25 45)" fill="#fecdd3" stroke="#15803d" stroke-width="3"/>
+                                <ellipse cx="75" cy="45" rx="8" ry="5" transform="rotate(30 75 45)" fill="#fecdd3" stroke="#15803d" stroke-width="3"/>
+                                <!-- 額頭小瀏海白毛 -->
+                                <circle cx="44" cy="34" r="7" fill="#ffffff" stroke="#15803d" stroke-width="2.5"/>
+                                <circle cx="56" cy="34" r="7" fill="#ffffff" stroke="#15803d" stroke-width="2.5"/>
+                                <circle cx="50" cy="32" r="8" fill="#ffffff"/>
+                                <!-- 眼睛 -->
+                                <circle cx="42" cy="48" r="3" fill="#15803d"/>
+                                <circle cx="58" cy="48" r="3" fill="#15803d"/>
+                                <!-- 微笑嘴巴 -->
+                                <path d="M47 54 Q50 57 53 54" fill="none" stroke="#15803d" stroke-width="3" stroke-linecap="round"/>
+                                <!-- 粉紅小腮紅 -->
+                                <circle cx="37" cy="52" r="3" fill="#f87171" opacity="0.8"/>
+                                <circle cx="63" cy="52" r="3" fill="#f87171" opacity="0.8"/>
                             </svg>
                         </div>
                         <!-- 6. Q版綠色拖拉機 -->
-                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-18 h-18 flex items-center justify-center" style="animation-delay: 1.5s;">
+                        <div class="sticker-deco shrink-0 bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 1.5s;">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
                                 <rect x="42" y="24" width="28" height="26" rx="4" fill="#bfdbfe" stroke="#15803d" stroke-width="4.5"/>
                                 <rect x="22" y="44" width="56" height="22" rx="4" fill="#22c55e" stroke="#15803d" stroke-width="4.5"/>
@@ -328,6 +381,11 @@
                         系統庫存
                     </h3>
                 </a>
+
+            </div>
+
+            <!-- 圓形工具按鈕網格第二排 -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto mt-6 md:mt-8">
 
                 <!-- 5. LINE派車系統 (亮綠色) -->
                 <a href="https://materialdep-cloud.github.io/LINE/" target="_blank" rel="noopener noreferrer"
