@@ -3,235 +3,446 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>綠園生活 GreenLiving - 工具導覽</title>
+    <title>綠園生活 GreenLiving - Q版工具導覽</title>
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入專門為英數字設計的超圓潤胖嘟嘟 Q 版字型 "Comfortaa" -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700;900&display=swap" rel="stylesheet">
+    
     <style>
+        /* 全局字體設定：英文數字用極圓 Comfortaa，中文自動對齊微軟正黑/蘋方極粗體，100%不缺字 */
+        .cute-font {
+            font-family: 'Comfortaa', "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+            font-weight: 900;
+        }
+
         /* 可愛風的波點與漸層背景 */
         body {
-            background-color: #e8f5e9; /* 柔和的淺綠色底 */
+            background-color: #f3faf4; 
             background-image: 
-                radial-gradient(circle at 100% 0%, #c8e6c9 0%, transparent 50%),
-                radial-gradient(circle at 0% 100%, #c8e6c9 0%, transparent 50%),
-                radial-gradient(#a5d6a7 2px, transparent 2px);
+                radial-gradient(circle at 100% 0%, #e2f5e5 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, #e2f5e5 0%, transparent 50%),
+                radial-gradient(#c2ebd0 3px, transparent 3px);
             background-size: 100% 100%, 100% 100%, 40px 40px;
             background-attachment: fixed;
         }
 
-        /* 微調 Q 版字體與平滑動畫 */
-        .cute-font {
-            font-family: "Nunito", "PingFang TC", "Microsoft JhengHei", "Comic Sans MS", sans-serif;
-        }
-
-        /* 圓形 Q 版按鈕的特殊立體樣式 */
+        /* 圓形 Q 版按鈕的立體果凍樣式 */
         .q-button {
-            aspect-ratio: 1 / 1; /* 保持正方形，再搭配 rounded-full 變成圓形 */
+            aspect-ratio: 1 / 1; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
             box-shadow: 
-                inset -8px -8px 16px rgba(0, 0, 0, 0.1), /* 內陰影增強立體感 */
-                inset 8px 8px 16px rgba(255, 255, 255, 0.5), /* 內高光 */
-                6px 6px 15px rgba(0, 0, 0, 0.15); /* 外陰影 */
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 彈跳效果的貝茲曲線 */
+                inset -8px -8px 16px rgba(0, 0, 0, 0.08), 
+                inset 8px 8px 16px rgba(255, 255, 255, 0.6), 
+                0px 10px 20px rgba(0, 0, 0, 0.06); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             text-decoration: none;
             overflow: hidden;
-            border: 4px solid rgba(255,255,255,0.8);
+            border: 6px solid #ffffff;
         }
 
         .q-button:hover {
-            transform: translateY(-8px) scale(1.05);
+            transform: translateY(-10px) scale(1.05);
             box-shadow: 
-                inset -8px -8px 16px rgba(0, 0, 0, 0.1),
-                inset 8px 8px 16px rgba(255, 255, 255, 0.6),
-                10px 15px 25px rgba(0, 0, 0, 0.2);
+                inset -8px -8px 16px rgba(0, 0, 0, 0.08),
+                inset 8px 8px 16px rgba(255, 255, 255, 0.7),
+                0px 20px 30px rgba(0, 0, 0, 0.12);
         }
 
-        /* 按鈕上方的高光反射 */
+        /* 按鈕上方的高光反射（果凍感） */
         .glossy-light {
             position: absolute;
-            top: 5%;
+            top: 6%;
             left: 15%;
-            width: 40%;
-            height: 20%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+            width: 45%;
+            height: 22%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0) 100%);
             border-radius: 9999px;
-            transform: rotate(-15deg);
+            transform: rotate(-12deg);
             pointer-events: none;
             z-index: 10;
         }
 
-        /* 標題區域裝飾 */
-        .header-deco {
-            font-size: 2.5rem;
+        /* 貼紙浮動動畫 */
+        .sticker-deco {
             display: inline-block;
-            animation: float 3s ease-in-out infinite;
+            animation: float 4s ease-in-out infinite;
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* 白雲輕飄動畫 */
+        .cloud-flow {
+            animation: cloud 8s ease-in-out infinite;
+        }
+        @keyframes cloud {
+            0% { transform: translateX(0px); }
+            50% { transform: translateX(8px); }
+            100% { transform: translateX(0px); }
         }
     </style>
-    <!-- 引入 Google Fonts: Nunito 讓英文字體更圓潤可愛 -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
 </head>
-<body class="min-h-screen cute-font selection:bg-green-300 py-10 px-4 md:px-8">
+<body class="min-h-screen cute-font selection:bg-green-300 py-6 px-4 md:px-8 flex items-center justify-center">
 
-    <div class="max-w-5xl mx-auto bg-white/60 backdrop-blur-md rounded-[3rem] p-8 shadow-2xl border-4 border-green-200">
+    <!-- 模擬設計圖的 Q 版綠色瀏覽器視窗外框 -->
+    <div class="w-full max-w-5xl bg-[#f0f9f1] rounded-[3rem] shadow-2xl border-4 border-[#a2d4ab] overflow-hidden my-4">
         
-        <!-- 標題區域 (模擬圖片上方的可愛農場場景) -->
-        <div class="text-center mb-12">
-            <div class="flex justify-center items-end gap-2 mb-4">
-                <span class="header-deco" style="animation-delay: 0s;">🧑‍🌾</span>
-                <span class="header-deco" style="animation-delay: 0.2s;">👩‍🌾</span>
-                <span class="header-deco text-4xl" style="animation-delay: 0.4s;">🐄</span>
-                <span class="header-deco text-4xl" style="animation-delay: 0.6s;">🐖</span>
-                <span class="header-deco" style="animation-delay: 0.8s;">🌱</span>
+        <!-- 視窗頂部控制列 (完全還原設計圖的頂部) -->
+        <div class="bg-[#b7e3bd] px-6 py-3 flex items-center justify-between border-b-4 border-[#a2d4ab] select-none">
+            <!-- 左側紅黃綠小圓點 -->
+            <div class="flex gap-2">
+                <span class="w-4.5 h-4.5 rounded-full bg-[#ff6b6b] border-2 border-[#e15252] inline-block"></span>
+                <span class="w-4.5 h-4.5 rounded-full bg-[#feca57] border-2 border-[#e1af3c] inline-block"></span>
+                <span class="w-4.5 h-4.5 rounded-full bg-[#1dd1a1] border-2 border-[#10ac84] inline-block"></span>
             </div>
-            
-            <div class="inline-block px-10 py-3 rounded-full bg-white border-4 border-green-400 shadow-lg transform -rotate-1 hover:rotate-1 transition-transform duration-300">
-                <h1 class="text-4xl md:text-5xl font-black text-green-800 tracking-wider">
-                    greenliving
-                </h1>
-                <h2 class="text-2xl md:text-3xl font-bold text-green-600 mt-1">
-                    綠園生活
-                </h2>
+            <!-- 中間視窗標題 -->
+            <div class="bg-white/80 text-[#2e623a] text-xs md:text-sm font-black px-6 py-1 rounded-full border border-[#91c99b]">
+                Greenliving Tools - Cute Dashboard
             </div>
-
-            <div class="flex justify-center items-end gap-2 mt-4">
-                <span class="header-deco" style="animation-delay: 1s;">🥬</span>
-                <span class="header-deco" style="animation-delay: 1.2s;">🥕</span>
-                <span class="header-deco" style="animation-delay: 1.4s;">🥔</span>
-                <span class="header-deco" style="animation-delay: 1.6s;">🚜</span>
-            </div>
+            <!-- 右側留空，保持置中對稱 -->
+            <div class="w-16 hidden md:block"></div>
         </div>
 
-        <!-- 圓形工具按鈕網格 -->
-        <!-- 順序：DM -> 理貨 -> 二廠 -> 系統 -> LINE -> 川聖 -> 邱薏芬 -> 產品 -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-10 max-w-4xl mx-auto">
-            
-            <!-- 1. DM (藍色) -->
-            <a href="https://materialdep-cloud.github.io/DM/" target="_blank" rel="noopener noreferrer"
-               class="q-button bg-[#93c5fd] rounded-full group">
-                <div class="glossy-light"></div>
-                <div class="text-6xl md:text-7xl mb-2 drop-shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 z-20">
-                    📰
-                </div>
-                <h3 class="text-lg md:text-xl font-bold text-blue-900 px-4 text-center leading-tight z-20">
-                    DM
-                </h3>
-            </a>
+        <!-- 視窗主內容區域 -->
+        <div class="p-6 md:p-10 relative">
 
-            <!-- 2. 理貨倉補貨安全庫存 (綠色) -->
-            <a href="https://materialdep-cloud.github.io/Restock/" target="_blank" rel="noopener noreferrer"
-               class="q-button bg-[#86efac] rounded-full group">
-                <div class="glossy-light"></div>
-                <div class="text-6xl md:text-7xl mb-2 drop-shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 z-20">
-                    🏭
-                </div>
-                <h3 class="text-sm md:text-base font-bold text-green-900 px-2 text-center leading-tight z-20">
-                    理貨倉<br>補貨安全庫存
-                </h3>
-            </a>
+            <!-- 標頭區域 (仿照設計圖的綠園農場大招牌) -->
+            <div class="bg-[#dcfce7] rounded-3xl border-4 border-[#86efac] p-6 mb-10 text-center relative overflow-hidden shadow-inner">
+                
+                <!-- 背景小草地與雲朵裝飾 -->
+                <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#22c55e_20%,transparent_20%)] bg-[size:16px_16px]"></div>
+                
+                <!-- 農場裝飾看板排版 -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+                    
+                    <!-- 左側農民貼紙組 (全手繪 SVG 貼紙) -->
+                    <div class="flex items-center gap-3">
+                        <!-- 1. 可愛小農夫 -->
+                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 0s;">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <path d="M15 52 Q50 32 85 52 Z" fill="#fcd34d" stroke="#15803d" stroke-width="5" stroke-linejoin="round"/>
+                                <path d="M35 45 C35 25, 65 25, 65 45" fill="#f59e0b" stroke="#15803d" stroke-width="5"/>
+                                <rect x="35" y="44" width="30" height="4" fill="#ef4444"/>
+                                <circle cx="50" cy="65" r="18" fill="#ffedd5" stroke="#15803d" stroke-width="5"/>
+                                <circle cx="43" cy="62" r="3" fill="#15803d"/>
+                                <circle cx="57" cy="62" r="3" fill="#15803d"/>
+                                <circle cx="36" cy="67" r="3.5" fill="#f87171" opacity="0.7"/>
+                                <circle cx="64" cy="67" r="3.5" fill="#f87171" opacity="0.7"/>
+                                <path d="M46 69 Q50 73 54 69" fill="none" stroke="#15803d" stroke-width="3.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <!-- 2. 可愛北鼻 -->
+                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-14 h-14 flex items-center justify-center" style="animation-delay: 0.3s;">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <circle cx="50" cy="52" r="24" fill="#ffedd5" stroke="#15803d" stroke-width="5"/>
+                                <path d="M50 28 Q56 16 48 13" fill="none" stroke="#15803d" stroke-width="5" stroke-linecap="round"/>
+                                <circle cx="40" cy="49" r="3" fill="#15803d"/>
+                                <circle cx="60" cy="49" r="3" fill="#15803d"/>
+                                <path d="M45 59 Q50 64 55 59" fill="none" stroke="#15803d" stroke-width="4" stroke-linecap="round"/>
+                                <circle cx="33" cy="54" r="4" fill="#f87171" opacity="0.7"/>
+                                <circle cx="67" cy="54" r="4" fill="#f87171" opacity="0.7"/>
+                            </svg>
+                        </div>
+                        <!-- 3. 可愛乳牛 -->
+                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 0.6s;">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <ellipse cx="22" cy="40" rx="10" ry="6" transform="rotate(-30 22 40)" fill="#ffffff" stroke="#15803d" stroke-width="4"/>
+                                <ellipse cx="78" cy="40" rx="10" ry="6" transform="rotate(30 78 40)" fill="#ffffff" stroke="#15803d" stroke-width="4"/>
+                                <ellipse cx="22" cy="40" rx="6" ry="3" transform="rotate(-30 22 40)" fill="#fecdd3"/>
+                                <ellipse cx="78" cy="40" rx="6" ry="3" transform="rotate(30 78 40)" fill="#fecdd3"/>
+                                <circle cx="50" cy="50" r="24" fill="#ffffff" stroke="#15803d" stroke-width="5"/>
+                                <path d="M32 36 C35 30 45 32 42 42 C35 45 30 40 32 36 Z" fill="#4b5563"/>
+                                <ellipse cx="50" cy="62" rx="16" ry="10" fill="#fbcfe8" stroke="#15803d" stroke-width="4"/>
+                                <circle cx="44" cy="62" r="2.5" fill="#be185d"/>
+                                <circle cx="56" cy="62" r="2.5" fill="#be185d"/>
+                                <circle cx="38" cy="44" r="3" fill="#15803d"/>
+                                <circle cx="62" cy="44" r="3" fill="#15803d"/>
+                            </svg>
+                        </div>
+                    </div>
 
-            <!-- 3. 二廠包材補貨安全庫存 (蒂芬妮綠/湖水綠) -->
-            <a href="https://materialdep-cloud.github.io/Restock2/" target="_blank" rel="noopener noreferrer"
-               class="q-button bg-[#6ee7b7] rounded-full group">
-                <div class="glossy-light"></div>
-                <div class="text-6xl md:text-7xl mb-2 drop-shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 z-20">
-                    🎁
-                </div>
-                <h3 class="text-sm md:text-base font-bold text-teal-900 px-2 text-center leading-tight z-20">
-                    二廠包材<br>補貨安全庫存
-                </h3>
-            </a>
+                    <!-- 中間大招牌 -->
+                    <div class="bg-white/90 border-4 border-[#22c55e] px-10 py-3 rounded-2xl shadow-lg transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+                        <h1 class="text-4xl md:text-5xl font-black text-[#15803d] tracking-wider uppercase">
+                            greenliving
+                        </h1>
+                        <h2 class="text-2xl md:text-3xl font-black text-[#16a34a] mt-1 tracking-widest">
+                            綠園生活
+                        </h2>
+                    </div>
 
-            <!-- 4. 系統庫存 (紫色) -->
-            <a href="https://materialdep-cloud.github.io/Real-time-inventory/" target="_blank" rel="noopener noreferrer"
-               class="q-button bg-[#c4b5fd] rounded-full group">
-                <div class="glossy-light"></div>
-                <div class="text-6xl md:text-7xl mb-2 drop-shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 z-20">
-                    🖥️
+                    <!-- 右側作物與拖拉機貼紙組 (全手繪 SVG 貼紙) -->
+                    <div class="flex items-center gap-3">
+                        <!-- 4. Q版大生菜 -->
+                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-16 h-16 flex items-center justify-center" style="animation-delay: 0.9s;">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <path d="M25 45 C15 30, 40 20, 50 35 C60 20, 85 30, 75 45 Z" fill="#a7f3d0" stroke="#15803d" stroke-width="4" stroke-linejoin="round"/>
+                                <path d="M28 45 C20 65, 80 65, 72 45 C75 35, 25 35, 28 45 Z" fill="#4ade80" stroke="#15803d" stroke-width="5" stroke-linejoin="round"/>
+                                <path d="M50 35 V62" fill="none" stroke="#15803d" stroke-width="4"/>
+                                <path d="M50 45 Q35 40 32 48" fill="none" stroke="#22c55e" stroke-width="3"/>
+                                <path d="M50 48 Q65 43 68 51" fill="none" stroke="#22c55e" stroke-width="3"/>
+                                <circle cx="43" cy="48" r="3" fill="#15803d"/>
+                                <circle cx="57" cy="48" r="3" fill="#15803d"/>
+                                <path d="M47 52 Q50 55 53 52" fill="none" stroke="#15803d" stroke-width="3.5" stroke-linecap="round"/>
+                                <circle cx="36" cy="51" r="3" fill="#f87171" opacity="0.7"/>
+                                <circle cx="64" cy="51" r="3" fill="#f87171" opacity="0.7"/>
+                            </svg>
+                        </div>
+                        <!-- 5. Q版綿羊 -->
+                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-14 h-14 flex items-center justify-center" style="animation-delay: 1.2s;">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <circle cx="35" cy="40" r="12" fill="#e5e7eb"/>
+                                <circle cx="65" cy="40" r="12" fill="#e5e7eb"/>
+                                <circle cx="50" cy="28" r="14" fill="#e5e7eb"/>
+                                <circle cx="50" cy="65" r="12" fill="#e5e7eb"/>
+                                <rect x="34" y="38" width="32" height="26" rx="12" fill="#ffedd5" stroke="#15803d" stroke-width="5"/>
+                                <path d="M26 44 C18 44, 20 56, 32 50 Z" fill="#fecdd3" stroke="#15803d" stroke-width="3.5"/>
+                                <path d="M74 44 C82 44, 80 56, 68 50 Z" fill="#fecdd3" stroke="#15803d" stroke-width="3.5"/>
+                                <ellipse cx="50" cy="34" rx="12" ry="7" fill="#ffffff" stroke="#15803d" stroke-width="3.5"/>
+                                <circle cx="43" cy="46" r="3" fill="#15803d"/>
+                                <circle cx="57" cy="46" r="3" fill="#15803d"/>
+                                <path d="M48 52 Q50 54 52 52" fill="none" stroke="#15803d" stroke-width="3" stroke-linecap="round"/>
+                                <circle cx="37" cy="49" r="3" fill="#f87171" opacity="0.7"/>
+                                <circle cx="63" cy="49" r="3" fill="#f87171" opacity="0.7"/>
+                            </svg>
+                        </div>
+                        <!-- 6. Q版綠色拖拉機 -->
+                        <div class="sticker-deco bg-white border-4 border-[#4ade80] rounded-full p-2 shadow-md w-18 h-18 flex items-center justify-center" style="animation-delay: 1.5s;">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect x="42" y="24" width="28" height="26" rx="4" fill="#bfdbfe" stroke="#15803d" stroke-width="4.5"/>
+                                <rect x="22" y="44" width="56" height="22" rx="4" fill="#22c55e" stroke="#15803d" stroke-width="4.5"/>
+                                <rect x="22" y="36" width="22" height="12" rx="2" fill="#22c55e" stroke="#15803d" stroke-width="4.5"/>
+                                <line x1="30" y1="36" x2="30" y2="20" stroke="#15803d" stroke-width="4.5" stroke-linecap="round"/>
+                                <line x1="30" y1="20" x2="34" y2="16" stroke="#15803d" stroke-width="4.5" stroke-linecap="round"/>
+                                <circle cx="64" cy="66" r="15" fill="#374151" stroke="#15803d" stroke-width="4.5"/>
+                                <circle cx="64" cy="66" r="6" fill="#fcd34d" stroke="#15803d" stroke-width="3"/>
+                                <circle cx="34" cy="71" r="10" fill="#374151" stroke="#15803d" stroke-width="4.5"/>
+                                <circle cx="34" cy="71" r="4" fill="#fcd34d" stroke="#15803d" stroke-width="3"/>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="text-lg md:text-xl font-bold text-purple-900 px-4 text-center leading-tight z-20">
-                    系統庫存
-                </h3>
-            </a>
 
-            <!-- 5. LINE派車系統 (淺綠色) -->
-            <a href="https://materialdep-cloud.github.io/LINE/" target="_blank" rel="noopener noreferrer"
-               class="q-button bg-[#bbf7d0] rounded-full group">
-                <div class="glossy-light"></div>
-                <div class="text-6xl md:text-7xl mb-2 drop-shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 z-20">
-                    🚚
+                <!-- 招牌下方口號 -->
+                <div class="mt-4 flex justify-center items-center gap-2 text-[#15803d]/80 text-sm font-black tracking-widest">
+                    <span>🍀 專業效率 ‧ 溫馨相伴 🍀</span>
                 </div>
-                <h3 class="text-lg md:text-xl font-bold text-green-900 px-4 text-center leading-tight z-20">
-                    LINE派車系統
-                </h3>
-            </a>
+            </div>
 
-            <!-- 6. 生菜重量計算器 - 川聖 (橘色) -->
-            <a href="https://materialdep-cloud.github.io/lettuce-calculator_-1/" target="_blank" rel="noopener noreferrer"
-               class="q-button bg-[#fdba74] rounded-full group">
-                <div class="glossy-light"></div>
-                <div class="text-6xl md:text-7xl mb-2 drop-shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 z-20">
-                    🥬
-                </div>
-                <h3 class="text-sm md:text-base font-bold text-orange-900 px-2 text-center leading-tight z-20">
-                    生菜重量<br>川聖
-                </h3>
-            </a>
-
-            <!-- 7. 生菜重量計算器 - 邱薏芬 (黃色) -->
-            <a href="https://materialdep-cloud.github.io/lettuce-calculator/" target="_blank" rel="noopener noreferrer"
-               class="q-button bg-[#fde047] rounded-full group">
-                <div class="glossy-light"></div>
-                <div class="text-6xl md:text-7xl mb-2 drop-shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 z-20">
-                    🥗
-                </div>
-                <h3 class="text-sm md:text-base font-bold text-yellow-900 px-2 text-center leading-tight z-20">
-                    生菜重量<br>邱薏芬
-                </h3>
-            </a>
-
-            <!-- 8. 產品箱重量計算 (橘紅色) -->
-            <a href="https://materialdep-cloud.github.io/-weight/" target="_blank" rel="noopener noreferrer"
-               class="q-button bg-[#fca5a5] rounded-full group">
-                <div class="glossy-light"></div>
-                <div class="text-6xl md:text-7xl mb-2 drop-shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 z-20">
-                    ⚖️
-                </div>
-                <h3 class="text-sm md:text-base font-bold text-red-900 px-2 text-center leading-tight z-20">
-                    產品箱<br>重量計算
-                </h3>
-            </a>
-
-        </div>
-
-        <!-- 底部裝飾條 -->
-        <div class="mt-16 border-t-4 border-green-200 pt-6">
-            <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-green-700 font-bold text-lg">
-                <div class="flex items-center gap-2 hover:text-green-900 cursor-pointer transition-colors">
-                    <span class="text-2xl">🖱️</span> 我們的工具
-                </div>
-                <div class="hidden md:block text-green-300">|</div>
-                <a href="#" class="flex items-center gap-2 hover:text-green-900 cursor-pointer transition-colors">
-                    <span class="text-2xl">☁️</span> 綠園生活 Cloud
+            <!-- 圓形工具按鈕網格 -->
+            <!-- 依序：DM -> 理貨 -> 二廠 -> 系統 -> LINE -> 川聖 -> 邱薏芬 -> 產品 -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
+                
+                <!-- 1. DM (藍色) -->
+                <a href="https://materialdep-cloud.github.io/DM/" target="_blank" rel="noopener noreferrer"
+                   class="q-button bg-[#6bb1f9] rounded-full group">
+                    <div class="glossy-light"></div>
+                    <!-- 獨家設計 SVG: 可愛摺疊DM -->
+                    <div class="w-20 h-20 md:w-24 md:h-24 z-20 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <path d="M20 30 L42 22 L62 33 L80 25 V70 L62 78 L42 67 L20 75 Z" fill="#ffffff" stroke="#1e40af" stroke-width="4" stroke-linejoin="round"/>
+                            <path d="M42 22 V67" fill="none" stroke="#1e40af" stroke-width="3" stroke-dasharray="2 2"/>
+                            <path d="M62 33 V78" fill="none" stroke="#1e40af" stroke-width="3" stroke-dasharray="2 2"/>
+                            <path d="M15 15 L17 20 L22 21 L18 24 L19 29 L15 26 L11 29 L12 24 L8 21 L13 20 Z" fill="#fbbf24"/>
+                            <path d="M82 65 L83 68 L86 69 L84 71 L84 74 L82 72 L80 74 L81 71 L79 69 L81 68 Z" fill="#f43f5e"/>
+                            <circle cx="52" cy="45" r="4" fill="#1e40af"/>
+                            <circle cx="68" cy="48" r="4" fill="#1e40af"/>
+                            <path d="M56 55 Q60 60 64 55" fill="none" stroke="#1e40af" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base md:text-xl font-black text-blue-950 mt-1 tracking-wider z-20">
+                        DM
+                    </h3>
                 </a>
-                <div class="hidden md:block text-green-300">|</div>
-                <div class="flex items-center gap-2 hover:text-green-900 cursor-pointer transition-colors">
-                    <span class="text-2xl">⚙️</span> 設定
-                </div>
-            </div>
-            <p class="text-center text-green-500/80 text-sm mt-4">
-                © <span id="current-year"></span> 綠園生活 GreenLiving All Rights Reserved.
-            </p>
-        </div>
 
+                <!-- 2. 理貨倉補貨安全庫存 (草綠色) -->
+                <a href="https://materialdep-cloud.github.io/Restock/" target="_blank" rel="noopener noreferrer"
+                   class="q-button bg-[#8ade9c] rounded-full group">
+                    <div class="glossy-light"></div>
+                    <!-- 獨家設計 SVG: 可愛小倉庫 -->
+                    <div class="w-20 h-20 md:w-24 md:h-24 z-20 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <polygon points="50,18 15,42 85,42" fill="#ff7e79" stroke="#14532d" stroke-width="4" stroke-linejoin="round"/>
+                            <rect x="22" y="42" width="56" height="38" rx="8" fill="#ffffff" stroke="#14532d" stroke-width="4"/>
+                            <rect x="36" y="52" width="28" height="28" rx="4" fill="#bfdbfe" stroke="#14532d" stroke-width="3"/>
+                            <line x1="36" y1="62" x2="64" y2="62" stroke="#14532d" stroke-width="2"/>
+                            <line x1="36" y1="72" x2="64" y2="72" stroke="#14532d" stroke-width="2"/>
+                            <circle cx="78" cy="35" r="11" fill="#22c55e" stroke="#14532d" stroke-width="3"/>
+                            <path d="M73 35 L77 39 L84 31" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xs md:text-sm font-black text-green-950 mt-1 text-center leading-tight z-20">
+                        理貨倉<br>補貨安全庫存
+                    </h3>
+                </a>
+
+                <!-- 3. 二廠包材補貨安全庫存 (蒂芬妮藍) -->
+                <a href="https://materialdep-cloud.github.io/Restock2/" target="_blank" rel="noopener noreferrer"
+                   class="q-button bg-[#5fe3cb] rounded-full group">
+                    <div class="glossy-light"></div>
+                    <!-- 獨家設計 SVG: 綁蝴蝶結的包材箱 -->
+                    <div class="w-20 h-20 md:w-24 md:h-24 z-20 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <rect x="22" y="32" width="56" height="48" rx="10" fill="#fcd34d" stroke="#042f2e" stroke-width="4"/>
+                            <path d="M22 45 H78 M50 45 V80" fill="none" stroke="#042f2e" stroke-width="3"/>
+                            <rect x="44" y="32" width="12" height="48" fill="#f43f5e" opacity="0.8"/>
+                            <circle cx="50" cy="32" r="7" fill="#f43f5e" stroke="#042f2e" stroke-width="3"/>
+                            <path d="M50 32 C38 20 42 12 50 24 C58 12 62 20 50 32 Z" fill="#fb7185" stroke="#042f2e" stroke-width="3" stroke-linejoin="round"/>
+                            <circle cx="34" cy="60" r="3" fill="#042f2e"/>
+                            <circle cx="66" cy="60" r="3" fill="#042f2e"/>
+                            <path d="M46 64 Q50 68 54 64" fill="none" stroke="#042f2e" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xs md:text-sm font-black text-teal-950 mt-1 text-center leading-tight z-20">
+                        二廠包材<br>補貨安全庫存
+                    </h3>
+                </a>
+
+                <!-- 4. 系統庫存 (糖果紫) -->
+                <a href="https://materialdep-cloud.github.io/Real-time-inventory/" target="_blank" rel="noopener noreferrer"
+                   class="q-button bg-[#bca6fe] rounded-full group">
+                    <div class="glossy-light"></div>
+                    <!-- 獨家設計 SVG: 可愛笑臉電腦 -->
+                    <div class="w-20 h-20 md:w-24 md:h-24 z-20 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <path d="M40 76 L32 85 H68 L60 76 Z" fill="#94a3b8" stroke="#2e1065" stroke-width="4" stroke-linejoin="round"/>
+                            <rect x="45" y="65" width="10" height="12" fill="#cbd5e1" stroke="#2e1065" stroke-width="4"/>
+                            <rect x="16" y="18" width="68" height="48" rx="10" fill="#ffffff" stroke="#2e1065" stroke-width="4"/>
+                            <rect x="22" y="24" width="56" height="36" rx="6" fill="#eff6ff"/>
+                            <path d="M32 40 Q36 36 40 40" fill="none" stroke="#2e1065" stroke-width="3.5" stroke-linecap="round"/>
+                            <path d="M60 40 Q64 36 68 40" fill="none" stroke="#2e1065" stroke-width="3.5" stroke-linecap="round"/>
+                            <path d="M46 48 Q50 52 54 48" fill="none" stroke="#e11d48" stroke-width="4.5" stroke-linecap="round"/>
+                            <rect x="68" y="10" width="18" height="18" rx="4" fill="#a7f3d0" stroke="#2e1065" stroke-width="3"/>
+                            <text x="71" y="22" font-size="10" font-weight="900" fill="#047857">DATA</text>
+                        </svg>
+                    </div>
+                    <h3 class="text-base md:text-xl font-black text-purple-950 mt-1 tracking-wider z-20">
+                        系統庫存
+                    </h3>
+                </a>
+
+                <!-- 5. LINE派車系統 (亮綠色) -->
+                <a href="https://materialdep-cloud.github.io/LINE/" target="_blank" rel="noopener noreferrer"
+                   class="q-button bg-[#a4f2b5] rounded-full group">
+                    <div class="glossy-light"></div>
+                    <!-- 獨家設計 SVG: 超Q LINE小貨車 -->
+                    <div class="w-20 h-20 md:w-24 md:h-24 z-20 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <rect x="14" y="32" width="46" height="38" rx="6" fill="#22c55e" stroke="#064e3b" stroke-width="4"/>
+                            <path d="M60 42 H76 Q84 42 84 52 V70 H60 Z" fill="#ffffff" stroke="#064e3b" stroke-width="4" stroke-linejoin="round"/>
+                            <path d="M64 47 H74 Q78 47 78 54 V58 H64 Z" fill="#bfdbfe" stroke="#064e3b" stroke-width="3"/>
+                            <rect x="22" y="42" width="30" height="18" rx="4" fill="#ffffff" stroke="#064e3b" stroke-width="2"/>
+                            <text x="26" y="55" font-size="10" font-weight="900" fill="#22c55e">LINE</text>
+                            <circle cx="28" cy="74" r="10" fill="#1f2937" stroke="#064e3b" stroke-width="3"/>
+                            <circle cx="28" cy="74" r="4" fill="#9ca3af"/>
+                            <circle cx="68" cy="74" r="10" fill="#1f2937" stroke="#064e3b" stroke-width="3"/>
+                            <circle cx="68" cy="74" r="4" fill="#9ca3af"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base md:text-xl font-black text-emerald-950 mt-1 tracking-wider z-20">
+                        LINE派車系統
+                    </h3>
+                </a>
+
+                <!-- 6. 生菜重量計算器 - 川聖 (甜橙橘) -->
+                <a href="https://materialdep-cloud.github.io/lettuce-calculator_-1/" target="_blank" rel="noopener noreferrer"
+                   class="q-button bg-[#ffb076] rounded-full group">
+                    <div class="glossy-light"></div>
+                    <!-- 獨家設計 SVG: 可愛生菜與川聖電子秤 -->
+                    <div class="w-20 h-20 md:w-24 md:h-24 z-20 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <ellipse cx="50" cy="55" rx="35" ry="8" fill="#cbd5e1" stroke="#7c2d12" stroke-width="3"/>
+                            <path d="M22 56 L26 80 H74 L78 56 Z" fill="#ffffff" stroke="#7c2d12" stroke-width="4" stroke-linejoin="round"/>
+                            <rect x="36" y="62" width="28" height="12" rx="3" fill="#1e293b"/>
+                            <text x="40" y="71" font-size="8" font-weight="900" fill="#22c55e" letter-spacing="1">川聖</text>
+                            <path d="M35 34 C30 20 42 12 50 25 C58 12 70 20 65 34 C72 44 60 52 50 48 C40 52 28 44 35 34 Z" fill="#4ade80" stroke="#064e3b" stroke-width="3.5" stroke-linejoin="round"/>
+                            <path d="M50 25 Q50 38 50 48" fill="none" stroke="#22c55e" stroke-width="2"/>
+                            <circle cx="45" cy="35" r="2.5" fill="#064e3b"/>
+                            <circle cx="55" cy="35" r="2.5" fill="#064e3b"/>
+                            <path d="M48 39 Q50 41 52 39" fill="none" stroke="#064e3b" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xs md:text-sm font-black text-orange-950 mt-1 text-center leading-tight z-20">
+                        生菜重量<br>川聖
+                    </h3>
+                </a>
+
+                <!-- 7. 生菜重量計算器 - 邱薏芬 (香蕉黃) -->
+                <a href="https://materialdep-cloud.github.io/lettuce-calculator/" target="_blank" rel="noopener noreferrer"
+                   class="q-button bg-[#ffd946] rounded-full group">
+                    <div class="glossy-light"></div>
+                    <!-- 獨家設計 SVG: 可愛生菜與邱薏芬電子秤 -->
+                    <div class="w-20 h-20 md:w-24 md:h-24 z-20 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <ellipse cx="50" cy="55" rx="35" ry="8" fill="#cbd5e1" stroke="#713f12" stroke-width="3"/>
+                            <path d="M22 56 L26 80 H74 L78 56 Z" fill="#ffffff" stroke="#713f12" stroke-width="4" stroke-linejoin="round"/>
+                            <rect x="34" y="62" width="32" height="12" rx="3" fill="#1e293b"/>
+                            <text x="36" y="71" font-size="7" font-weight="900" fill="#38bdf8" letter-spacing="0">邱薏芬</text>
+                            <path d="M32 35 C28 22 40 10 50 22 C60 10 72 22 68 35 C74 46 62 52 50 48 C38 52 26 46 32 35 Z" fill="#22c55e" stroke="#064e3b" stroke-width="3.5" stroke-linejoin="round"/>
+                            <circle cx="45" cy="32" r="3" fill="#064e3b"/>
+                            <circle cx="55" cy="32" r="3" fill="#064e3b"/>
+                            <path d="M48 37 Q50 42 52 37" fill="none" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xs md:text-sm font-black text-yellow-950 mt-1 text-center leading-tight z-20">
+                        生菜重量<br>邱薏芬
+                    </h3>
+                </a>
+
+                <!-- 8. 產品箱重量計算 (水蜜桃紅) -->
+                <a href="https://materialdep-cloud.github.io/-weight/" target="_blank" rel="noopener noreferrer"
+                   class="q-button bg-[#ffa6a6] rounded-full group">
+                    <div class="glossy-light"></div>
+                    <!-- 獨家設計 SVG: 可愛大磅秤與箱子 -->
+                    <div class="w-20 h-20 md:w-24 md:h-24 z-20 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <rect x="18" y="70" width="64" height="12" rx="4" fill="#475569" stroke="#7f1d1d" stroke-width="4"/>
+                            <rect x="38" y="73" width="24" height="6" fill="#000" rx="1"/>
+                            <circle cx="41" cy="76" r="1.5" fill="#22c55e"/>
+                            <circle cx="59" cy="76" r="1.5" fill="#22c55e"/>
+                            <rect x="28" y="24" width="44" height="46" rx="8" fill="#f59e0b" stroke="#7f1d1d" stroke-width="4"/>
+                            <rect x="46" y="24" width="8" height="46" fill="#d97706"/>
+                            <path d="M34 44 H40 M60 44 H66" fill="none" stroke="#7f1d1d" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M12 25 V45 M12 45 L6 39 M12 45 L18 39" fill="none" stroke="#dc2626" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M88 25 V45 M88 45 L82 39 M88 45 L94 39" fill="none" stroke="#dc2626" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xs md:text-sm font-black text-red-950 mt-1 text-center leading-tight z-20">
+                        產品箱<br>重量計算
+                    </h3>
+                </a>
+
+            </div>
+
+            <!-- 底部裝飾條 -->
+            <div class="mt-14 border-t-4 border-[#a2d4ab]/40 pt-6">
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-[#2e623a] font-black text-base">
+                    <div class="flex items-center gap-2 hover:text-green-900 cursor-pointer transition-colors">
+                        <span class="text-xl">🖱️</span> 我們的工具
+                    </div>
+                    <div class="hidden md:block text-[#a2d4ab]">|</div>
+                    <a href="#" class="flex items-center gap-2 hover:text-green-900 cursor-pointer transition-colors">
+                        <span class="text-xl">☁️</span> 綠園生活 Cloud
+                    </a>
+                    <div class="hidden md:block text-[#a2d4ab]">|</div>
+                    <div class="flex items-center gap-2 hover:text-green-900 cursor-pointer transition-colors">
+                        <span class="text-xl">⚙️</span> 設定
+                    </div>
+                </div>
+                <p class="text-center text-[#2e623a]/60 text-xs font-black mt-4 tracking-wider">
+                    © <span id="current-year"></span> 綠園生活 GreenLiving All Rights Reserved.
+                </p>
+            </div>
+
+        </div>
     </div>
 
     <script>
